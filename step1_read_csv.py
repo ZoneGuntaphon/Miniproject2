@@ -1,14 +1,15 @@
-# test
-# read file
 def main():
-    with open("records.csv", "r", encoding = "utf-8") as file:
-        #read header
-        header = file.readline()#.strip()
-        print("Header:", header)
+    # ใช้ with เพื่อให้ปิดไฟล์อัตโนมัติ
+    with open("records.csv", "r", encoding="utf-8") as f:
+        header = f.readline().strip()
+        print("HEADER:", header)
 
-        #read sample rows
-        for i in range(5):
-            sample = file.readline().strip()
-            print(f"{i+1}. ", sample)
+        print("\nSAMPLE ROWS:")
+        for i in range(5):                  # ลองอ่าน 5 แถวถัดจาก header
+            line = f.readline()
+            if not line:
+                break                       # เจอ EOF ก็หยุด
+            print(f"{i+1:>2}.", line.strip())
 
-#main()
+if __name__ == "__main__":
+    main()
